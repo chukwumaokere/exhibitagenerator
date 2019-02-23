@@ -1,0 +1,25 @@
+{
+  "name": "Exhibit-A-Generator",
+  "version": "1.0.0",
+  "description": "An application to streamline the creation of Exhibit A documents for the Sustainable Development department for the City of Chicago.",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": "https://github.com/electron/electron-quick-start",
+  "keywords": [
+    "Electron",
+    "quick",
+    "start",
+    "tutorial",
+    "demo"
+  ],
+  "author": "GitHub",
+  "license": "CC0-1.0",
+  "devDependencies": {
+    "electron": "^4.0.4"
+  },
+  "dependencies": {
+    "python-shell": "^1.0.7"
+  }
+}

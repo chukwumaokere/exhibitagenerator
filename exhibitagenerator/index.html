@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Exhibit A Generator!</title>
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/extra.css">
+  </head>
+  <body>
+	  <div class="real-body" style="text-align: center;">
+    <div class="header" style="">
+    <h2>What would you like to do today?</h2>
+    </div>
+    <!-- All of the Node.js APIs are available in this renderer process. -->
+	<div class="form" style="margin-top:2%;">
+		<select id="menu_options" class="custom-select" style="width: 95%;">
+			<option value="1">Begin making Exhibit A word documents</option>
+			<option value="2">Troubleshooting</option>
+		</select>
+		<br>
+		<button type="button" class="btn btn-primary" style="margin-top: 2%;" id="go">Let's Go!</button>
+		<div class="footer">© 2019 - Courtney Medina <br> License: Creative Commons, Free to use! <br> <a href="https://www.linkedin.com/in/courtney-april-medina">Send me thanks on LinkedIn :)</a> </div>
+	</div>
+    <script>
+      // You can also require other files to run in this process
+      require('./renderer.js')
+    </script>
+	  </div>
+  </body>
+</html>
