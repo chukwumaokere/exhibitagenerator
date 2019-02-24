@@ -6,6 +6,29 @@
 var pss = require('python-shell');
 var button = document.getElementById('go');
 
+var pythonVersion = pss.PythonShell.getVersion().then(resolve => console.log(resolve.stdout));
+var OS = navigator.platform;
+var checked = false;
+var URL = [];
+	URL['Win32'] = 'https://www.python.org/ftp/python/3.7.1/python-3.7.1-amd64.exe';
+	URL['MacIntel'] = "https://www.python.org/ftp/python/3.7.1/python-3.7.1-macosx10.9.pkg";
+if (pythonVersion){
+	var python = true;
+	console.log('Python installed');
+}else{
+	var python = false;
+	console.log('Python not installed');
+}
+
+if (python !== true && checked == false){
+	var resp = confirm("Python 3.7.1 is needed for this app to run properly. Download now?");
+	if (resp == true){
+		window.location.replace(URL[OS]);
+		checked = true;
+	}else{
+		checked = true;
+	}
+}
 if (button){
 	button.addEventListener('click', function(){
 		var response = document.getElementById('menu_options').value;
