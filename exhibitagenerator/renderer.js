@@ -104,14 +104,27 @@ if (createdocbutton){
 			mode: 'text',
 			args: [spreadsheet, template, sheetname, range]
 		}
+
+		var href = window.location.href;
+		var dir = href.substring(8, href.lastIndexOf('/')) + "/";
 		pss.PythonShell.run('./execution.py', options, function(err, results){
 			//if(err) throw err;
 			console.log('results: ' + results);
-			if (results[1] == 'Success'){
-				alert("Documents Created!");
+			if(results){
+				if (results[1] == 'Success'){
+					alert("Documents Created!");
+				}
+				if (results[1] == undefined || !results){
+					alert("An error occured: " + err);
+				}
 			}
-			if (results[1] == undefined || !results){
-				alert("An error occured: " + err);
+			else{
+				if(err){
+					alert(err);
+					console.log(err);
+				}else{
+					alert("An unknown error has occured");
+				}
 			}
 		});
 		
