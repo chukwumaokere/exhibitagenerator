@@ -3,6 +3,7 @@
 // All of the Node.js APIs are available in this process.
 // https://ourcodeworld.com/articles/read/286/how-to-execute-a-python-script-and-retrieve-output-data-and-errors-in-node-js
 //
+/* Checking Application Version, then Python version */
 var pjson = require('./package.json');
 var version = pjson.version;
 
@@ -25,32 +26,42 @@ xhttp.onreadystatechange = function() {
 xhttp.open("GET", "https://chukwumaokere.com/exhibitagenerator/version.php", true);
 xhttp.send();
 
+//Begin Python checking
 var pss = require('python-shell');
-var button = document.getElementById('go');
-
-var pythonVersion = pss.PythonShell.getVersion().then(resolve => console.log(resolve.stdout));
 var OS = navigator.platform;
 var checked = false;
 var URL = [];
-	URL['Win32'] = 'https://www.python.org/ftp/python/3.7.1/python-3.7.1-amd64.exe';
-	URL['MacIntel'] = "https://www.python.org/ftp/python/3.7.1/python-3.7.1-macosx10.9.pkg";
-if (pythonVersion){
-	var python = true;
-	console.log('Python installed');
-}else{
-	var python = false;
-	console.log('Python not installed');
-}
+        URL['Win32'] = 'https://www.python.org/ftp/python/3.7.1/python-3.7.1-amd64.exe';
+        URL['MacIntel'] = "https://www.python.org/ftp/python/3.7.1/python-3.7.1-macosx10.9.pkg";
 
-if (python !== true && checked == false){
-	var resp = confirm("Python 3.7.1 is needed for this app to run properly. Download now?");
-	if (resp == true){
-		window.location.replace(URL[OS]);
-		checked = true;
+
+var pythonVersion = pss.PythonShell.getVersion().then(resolve => { 
+	var pythonVer = resolve.stdout; console.log(resolve.stdout);
+
+	if (pythonVersion && typeof(pythonVer) === 'string'){
+		var python = true;
+		console.log('Python installed');
 	}else{
-		checked = true;
+		var python = false;
+		console.log('Python not installed');
+		console.log(typeof(pythonVer));
+		console.log(pythonVersion);
 	}
-}
+
+	if (python !== true && checked == false){
+        var resp = confirm("Python 3.7.1 is needed for this app to run properly. Download now?");
+		if (resp == true){
+			window.location.replace(URL[OS]);
+			checked = true;
+		}else{
+			checked = true;
+		}
+	}
+});
+/* End Version Checking */
+
+var button = document.getElementById('go');
+
 if (button){
 	button.addEventListener('click', function(){
 		var response = document.getElementById('menu_options').value;
