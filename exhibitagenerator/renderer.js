@@ -3,6 +3,28 @@
 // All of the Node.js APIs are available in this process.
 // https://ourcodeworld.com/articles/read/286/how-to-execute-a-python-script-and-retrieve-output-data-and-errors-in-node-js
 //
+var pjson = require('./package.json');
+var version = pjson.version;
+
+var xhttp = new XMLHttpRequest();
+xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+       // Action to be performed when the document is read;
+	  var currentVersion = xhttp.responseText;
+	    if (version != currentVersion){
+		console.log(`Version mismatch. Installed Version: ${version} vs Current Version ${currentVersion}`);
+		var update = confirm(`There is a newer version available! Would you like to download and update now?`);
+		    if (update){
+			window.location.replace("https://chukwumaokere.com/exhibitagenerator/exhibitagenerator.zip");
+		    }
+	    }else{
+		console.log(`Installed Version: ${version} vs Current Version ${currentVersion}`);
+	    }
+    }
+};
+xhttp.open("GET", "https://chukwumaokere.com/exhibitagenerator/version.php", true);
+xhttp.send();
+
 var pss = require('python-shell');
 var button = document.getElementById('go');
 
