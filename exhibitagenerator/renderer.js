@@ -34,29 +34,27 @@ var URL = [];
         URL['Win32'] = 'https://www.python.org/ftp/python/3.7.1/python-3.7.1-amd64.exe';
         URL['MacIntel'] = "https://www.python.org/ftp/python/3.7.1/python-3.7.1-macosx10.9.pkg";
 
+var python;
+var pythonVersion = pss.PythonShell.getVersion().then(resolve => {
+        var pythonVer = resolve.stdout; console.log(resolve.stdout);
 
-var pythonVersion = pss.PythonShell.getVersion().then(resolve => { 
-	var pythonVer = resolve.stdout; console.log(resolve.stdout);
-
-	if (pythonVersion && typeof(pythonVer) === 'string'){
-		var python = true;
-		console.log('Python installed');
-	}else{
-		var python = false;
-		console.log('Python not installed');
-		console.log(typeof(pythonVer));
-		console.log(pythonVersion);
-	}
-
-	if (python !== true && checked == false){
-        var resp = confirm("Python 3.7.1 is needed for this app to run properly. Download now?");
-		if (resp == true){
-			window.location.replace(URL[OS]);
-			checked = true;
-		}else{
-			checked = true;
-		}
-	}
+        if (pythonVersion && typeof(pythonVer) === 'string'){
+                var python = true;
+                console.log('Python installed');
+        }else{
+                var python = false;
+                console.log('Python not installed');
+                console.log(typeof(pythonVer));
+                console.log(pythonVersion);
+        }
+		checkVersion(python, checked);
+}).catch(function(err){
+        if (err.message.includes("Command failed")){
+                var python = false;
+                console.log('Python not installed');
+        }
+        console.log(((err)));
+		checkVersion(python, checked);
 });
 /* End Version Checking */
 
@@ -119,3 +117,17 @@ if (createdocbutton){
 		
 	});
 }
+
+function checkVersion(ver, checked){
+        if (ver !== true && checked == false){
+        var resp = confirm("Python 3.7.1 is needed for this app to run properly. Download now?");
+                if (resp == true){
+                        window.location.replace(URL[OS]);
+                        checked = true;
+                }else{
+                        checked = true;
+                }
+        }
+}
+
+
