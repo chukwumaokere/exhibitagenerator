@@ -107,7 +107,7 @@ if (createdocbutton){
 
 		var href = window.location.href;
 		var dir = href.substring(8, href.lastIndexOf('/')) + "/";
-		pss.PythonShell.run('./execution.py', options, function(err, results){
+		pss.PythonShell.run(dir+'./execution.py', options, function(err, results){
 			//if(err) throw err;
 			console.log('results: ' + results);
 			if(results){
