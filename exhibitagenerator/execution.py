@@ -7,9 +7,7 @@ import sys
 # Define the variables
 dir_path = os.path.dirname(os.path.realpath(__file__))
 outputPath = sys.argv[5]
-#spreadsheet = dir_path + '/../' + sys.argv[1]
 spreadsheet = sys.argv[1]
-#template = dir_path + '/../' + sys.argv[2]
 template = sys.argv[2]
 sheetname = sys.argv[3]
 rangee = sys.argv[4]
