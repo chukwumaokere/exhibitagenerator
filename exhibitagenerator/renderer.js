@@ -8,6 +8,7 @@ const {shell} = require('electron');
 var pjson = require('./package.json');
 var version = pjson.version;
 
+/* Deprecated Update Method. Using Squirrel to handle updates now.
 var xhttp = new XMLHttpRequest();
 xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
@@ -26,6 +27,7 @@ xhttp.onreadystatechange = function() {
 };
 xhttp.open("GET", "https://chukwumaokere.com/exhibitagenerator/version.php", true);
 xhttp.send();
+*/
 
 //Begin Python checking
 var pss = require('python-shell');
