@@ -4,6 +4,7 @@
 // https://ourcodeworld.com/articles/read/286/how-to-execute-a-python-script-and-retrieve-output-data-and-errors-in-node-js
 //
 /* Checking Application Version, then Python version */
+const {shell} = require('electron');
 var pjson = require('./package.json');
 var version = pjson.version;
 
@@ -89,7 +90,11 @@ if (createdocbutton){
 		var template_raw = document.getElementById('template').value;
 		var pieces = template_raw.split('\\');
 		var template = pieces[pieces.length-1];
-	
+		var fullSSPath = document.getElementById('spreadsheet').files[0].path;
+		var fullDOCXPath = document.getElementById('template').files[0].path;
+		var outputPath = fullDOCXPath.substring(0, fullDOCXPath.lastIndexOf('\\')) + "\\" + "output\\";
+
+		console.log('outputPath: ' + outputPath );
 		if (allrows.checked == true){
 			var range = 'all';
 		}else{
@@ -102,17 +107,19 @@ if (createdocbutton){
 		
 		options = {
 			mode: 'text',
-			args: [spreadsheet, template, sheetname, range]
+			args: [fullSSPath, fullDOCXPath, sheetname, range, outputPath]
 		}
 
 		var href = window.location.href;
 		var dir = href.substring(8, href.lastIndexOf('/')) + "/";
 		pss.PythonShell.run(dir+'./execution.py', options, function(err, results){
-			//if(err) throw err;
 			console.log('results: ' + results);
 			if(results){
 				if (results[1] == 'Success'){
-					alert("Documents Created!");
+					var resp = confirm("Documents Created! Would you like to view the documents now?");
+					if(resp == true){
+						shell.openItem(outputPath);
+					}
 				}
 				if (results[1] == undefined || !results){
 					alert("An error occured: " + err);
