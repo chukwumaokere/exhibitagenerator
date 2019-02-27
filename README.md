@@ -2,7 +2,7 @@
 
 ## An application to streamline the creation of Exhibit A documents for the Sustainable Development department for the City of Chicago.
 
-### [https://github.com/chukwumaokere/exhibitagenerator/releases/download/3.1.0/ExhibitAGenerator-Setup3.0.0.exe](Download here)   
+### [Download Here](https://github.com/chukwumaokere/exhibitagenerator/releases/download/3.1.0/ExhibitAGenerator-Setup3.0.0.exe)  
 
 ### How to use:
 1. Download and Run the setup file   
