@@ -94,6 +94,8 @@ if(allrows){
 if (createdocbutton){
 	createdocbutton.addEventListener('click', function(){ 
 		showLoading();
+		var errors = false;
+		var errorMsg = '';
 		var spreadsheet_raw = document.getElementById('spreadsheet').value;
 		var pieces = spreadsheet_raw.split('\\');
 		var spreadsheet = pieces[pieces.length-1];
@@ -101,18 +103,38 @@ if (createdocbutton){
 		var template_raw = document.getElementById('template').value;
 		var pieces = template_raw.split('\\');
 		var template = pieces[pieces.length-1];
-		var fullSSPath = document.getElementById('spreadsheet').files[0].path;
-		var fullDOCXPath = document.getElementById('template').files[0].path;
-		var outputPath = fullDOCXPath.substring(0, fullDOCXPath.lastIndexOf('\\')) + "\\" + "output\\";
 
+		var fullSSPath1 = document.getElementById('spreadsheet').files[0];
+		if (fullSSPath1){
+			var fullSSPath = fullSSPath1.path;
+		}else{
+			errorMsg += "Please select a spreadsheet! \n";
+		}
+
+		var fullDOCXPath1 = document.getElementById('template').files[0];
+		if (fullDOCXPath1){
+			var fullDOCXPath = fullDOCXPath1.path;
+		}else{
+			errorMsg += "Please select a Word document! \n";
+		}
+		if(fullDOCXPath){
+			var outputPath = fullDOCXPath.substring(0, fullDOCXPath.lastIndexOf('\\')) + "\\" + "output\\";
+		}
 		console.log('outputPath: ' + outputPath );
+
 		if (allrows.checked == true){
 			var range = 'all';
 		}else{
 			var range = document.getElementById('range').value;
 		}
 		
+		if(range == ''){
+			errorMsg += "Please enter a range! \n";
+		}
 		var sheetname = document.getElementById('sheetname').value;
+		if (sheetname == ''){
+			errorMsg += "Please enter a valid sheetname \n";
+		}
 		var path = document.location.pathname;
 		var dir = path.substring(path.indexOf('/'), path.lastIndexOf('/'));
 		
@@ -123,34 +145,42 @@ if (createdocbutton){
 
 		var href = window.location.href;
 		var dir = href.substring(8, href.lastIndexOf('/')) + "/";
-		pss.PythonShell.run(dir+'./execution.py', options, function(err, results){
-			console.log('results: ' + results);
-			if(results){
-				if (results[1] == 'Success'){
-					hideLoading();
-					var resp = confirm("Documents Created! Would you like to view the documents now?");
-					if(resp == true){
-						showLoading();
-						shell.openItem(outputPath);
+		if (errorMsg != ''){
+			errors = true;
+		}
+		if (errors == true){
+			alert(errorMsg);
+			hideLoading();
+		}else{
+			pss.PythonShell.run(dir+'./execution.py', options, function(err, results){
+				console.log('results: ' + results);
+				if(results){
+					if (results[1] == 'Success'){
+						hideLoading();
+						var resp = confirm("Documents Created! Would you like to view the documents now?");
+						if(resp == true){
+							showLoading();
+							shell.openItem(outputPath);
+							hideLoading();
+						}
+					}
+					if (results[1] == undefined || !results){
+						alert("An error occured: " + err);
 						hideLoading();
 					}
 				}
-				if (results[1] == undefined || !results){
-					alert("An error occured: " + err);
-					hideLoading();
+				else{
+					if(err){
+						alert(err);
+						console.log(err);
+						hideLoading();
+					}else{
+						alert("An unknown error has occured");
+						hideLoading();
+					}
 				}
-			}
-			else{
-				if(err){
-					alert(err);
-					console.log(err);
-					hideLoading();
-				}else{
-					alert("An unknown error has occured");
-					hideLoading();
-				}
-			}
-		});
+			});
+		}
 		
 	});
 }
@@ -175,7 +205,6 @@ function hideLoading(){
 	}else{
 		var page = document.getElementById('wrapper');
 	}
-	console.log(load2);
 	load1.setAttribute("style", "display:none");
 	load2.setAttribute("style", "display:none");
 	page.classList.remove("blur");
