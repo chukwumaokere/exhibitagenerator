@@ -29,6 +29,14 @@ xhttp.open("GET", "https://chukwumaokere.com/exhibitagenerator/version.php", tru
 xhttp.send();
 */
 
+//On load remove loader
+window.onload = function (){
+	showLoading();
+	setTimeout(function(){
+		hideLoading();
+	}, 250);
+}
+
 //Begin Python checking
 var pss = require('python-shell');
 var OS = navigator.platform;
@@ -85,6 +93,7 @@ if(allrows){
 }
 if (createdocbutton){
 	createdocbutton.addEventListener('click', function(){ 
+		showLoading();
 		var spreadsheet_raw = document.getElementById('spreadsheet').value;
 		var pieces = spreadsheet_raw.split('\\');
 		var spreadsheet = pieces[pieces.length-1];
@@ -118,21 +127,27 @@ if (createdocbutton){
 			console.log('results: ' + results);
 			if(results){
 				if (results[1] == 'Success'){
+					hideLoading();
 					var resp = confirm("Documents Created! Would you like to view the documents now?");
 					if(resp == true){
+						showLoading();
 						shell.openItem(outputPath);
+						hideLoading();
 					}
 				}
 				if (results[1] == undefined || !results){
 					alert("An error occured: " + err);
+					hideLoading();
 				}
 			}
 			else{
 				if(err){
 					alert(err);
 					console.log(err);
+					hideLoading();
 				}else{
 					alert("An unknown error has occured");
+					hideLoading();
 				}
 			}
 		});
@@ -152,4 +167,28 @@ function checkVersion(ver, checked){
         }
 }
 
-
+function hideLoading(){
+	var load1 = document.getElementById('load-1');
+	var load2 = document.getElementById('load-2');
+	if(document.getElementById('page')){
+		var page = document.getElementById('page');
+	}else{
+		var page = document.getElementById('wrapper');
+	}
+	console.log(load2);
+	load1.setAttribute("style", "display:none");
+	load2.setAttribute("style", "display:none");
+	page.classList.remove("blur");
+}
+function showLoading(){
+	var load1 = document.getElementById('load-1');
+        var load2 = document.getElementById('load-2');
+	if(document.getElementById('page')){
+	        var page = document.getElementById('page');
+	}else{
+		var page = document.getElementById('wrapper');
+	}
+	load1.removeAttribute("style");
+	load2.removeAttribute("style");
+	page.classList.add("blur");
+}

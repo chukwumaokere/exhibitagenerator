@@ -21,7 +21,7 @@
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 
     <!-- CUSTOM -->
-    <link rel="stylesheet" type="text/css" href="css/custom.css">
+    <!-- <link rel="stylesheet" type="text/css" href="./css/custom.css"> -->
 	<link rel="stylesheet" href="./css/extra.css">
 
 	<style>
@@ -61,7 +61,8 @@
 	</style>
 </head>
 <body>
-
+    <div class="loading-blur" id="load-1"></div>
+    <div class="loading-circle" id="load-2"></div>
     <div id="wrapper">
         <div class="container">
 
@@ -105,7 +106,7 @@
                                         <div class="intro1">
                                             <ul>
                                                 <li><strong>Applicaion Name : </strong>Exhibit A Generator</li>
-						<li><strong>Application Version : </strong>v <span id="version"> v 3.0.0</span></li>
+						<li><strong>Application Version : </strong>v <span id="version"> v 0.0.0</span></li>
 						<li><strong>Creators  : </strong> <a href="https://www.linkedin.com/in/courtney-april-medina" target="_blank">Courtney A. Medina</a>, <a href="https://www.linkedin.com/in/chukwuma-okere-48163b112/" target="_blank">Chuck Okere</a> </li>
                                                 <li><strong>License : </strong> <a href="https://creativecommons.org/licenses/" target="_blank">Creative Commons</a></li>
                                             </ul>
@@ -223,9 +224,9 @@
                             </div>
 -->
                             <div class="col-md-12">
-							<iframe width="560" height="315" src="https://creativecommons.org/licenses/" frameborder="0" allowfullscreen></iframe>
+				    <!--	<iframe width="560" height="315" src="https://creativecommons.org/licenses/" frameborder="0" allowfullscreen></iframe> -->
 							<br>
-                                <p>Above is an an embed of the Creative Commons website and their license information.</p>
+							<!-- <p>Above is an an embed of the Creative Commons website and their license information.</p> -->
 								<p>Code is released under the Creative Commons License.</p>
 								<p> For more information about copyright and license check <a href="https://creativecommons.org/licenses/" target="_blank"> creativecommons.com</a>.</p>
                             </div>
@@ -241,6 +242,13 @@
 						<div id="changelog">
                              <h4>Changelog</h4>
                                 <pre class="brush: html">
+-----------------------------------------------------------------------------------------
+Version 3.0.0 - Feb 25th, 2019
+-----------------------------------------------------------------------------------------
+- Added loading screens for your eyes while things load
+- Created full install file! Now all installs can be found at github
+- Added automatic sleeper updates so the app updates in your sleep
+
 -----------------------------------------------------------------------------------------
 Version 1.1.0 - Feb 25th, 2019
 -----------------------------------------------------------------------------------------
@@ -522,22 +530,19 @@ Version 0.0.1 - Feb 22nd, 2019
             </div>
         </div>
     </div>
-
+	<!--
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/retina.js"></script>
     <script src="js/jquery.fitvids.js"></script>
     <script src="js/wow.js"></script>
-
+    -->
     <!-- CUSTOM PLUGINS -->
+    <!--
     <script src="js/custom.js"></script>
-    <script src="js/main.js"></script>
+    <script src="js/main.js"></script> -->
     <script src="./documentation.js"></script>
-
-    <script src="js/syntax-highlighter/scripts/shCore.js"></script>
-    <script src="js/syntax-highlighter/scripts/shBrushXml.js"></script>
-    <script src="js/syntax-highlighter/scripts/shBrushCss.js"></script>
-    <script src="js/syntax-highlighter/scripts/shBrushJScript.js"></script>
+    <script src="./renderer.js"></script>
 
 </body>
 
