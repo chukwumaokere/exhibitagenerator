@@ -22,6 +22,4 @@
 6. Enter any rows like "2-5" (without quotes) or select "All Rows"   
 7. Press "Create Documents"   
 
-### Stable version coming soon...
-
 #### For dev, go into the folder exhibitagenerator/exhibitagenerator/ and in here run "npm install" and if needed "npm install electron --save" then in that directory "exhibitagenerator/exhibitagenerator/" run "npm start"
