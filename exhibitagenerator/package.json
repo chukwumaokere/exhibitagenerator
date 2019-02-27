@@ -4,7 +4,8 @@
   "description": "An application to streamline the creation of Exhibit A documents for the Sustainable Development department for the City of Chicago.",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "package": "electron-packager . exhibitagenerator --platform=win32 --arch=x64"
   },
   "repository": "https://github.com/chukwumaokere/exhibitagenerator",
   "keywords": [
