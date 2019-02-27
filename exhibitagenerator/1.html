@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Exhibit A Generator! — Fields</title>
+    <title>Exhibit A Generator! — Settings</title>
     <link rel="stylesheet" href="./css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/extra.css">
   </head>
@@ -12,26 +12,26 @@
   <div class="real-body-1" style="/*text-align: center;*/" id="page">
     <div class="header" style="text-align: center;">
 	    <div class="top-bar"style="text-align: left !important;"><a href="./index.html"> ← Back</a> </div>
-	    <h2>Exhibit-A Fields</h2>
+	    <h2>Document Settings</h2>
     </div>
     <!-- All of the Node.js APIs are available in this renderer process. -->
 	<div class="form" style="/*margin-top:0%;*/">
 		<!-- <label for="pin_number">PIN Number</label> -->
 		    <input type="file" class="form-control-file" id="spreadsheet">
-		    <small id="spreadsheet_help" class="form-text text-muted mb-2">Select Data Spreadsheet</small>
+		    <small id="spreadsheet_help" class="form-text text-muted mb-2">Choose Excel file</small>
 		    <input type="text" class="form-control" id="sheetname" placeholder="Ex: Sheet 1">
-		    <small id="sheetname_help" class="form-text text-muted mb-3">Enter Excel Sheet name</small> 
+		    <small id="sheetname_help" class="form-text text-muted mb-3">Type Excel Sheet Name above</small> 
 
 		    <input type="file" class="form-control-file" id="template">
-                    <small id="template_help" class="form-text text-muted mb-3">Select Document Template</small>
+                    <small id="template_help" class="form-text text-muted mb-3">Choose Word Template</small>
 
 		    <input type="text" class="form-control" id="range" placeholder="Ex: 0-20..."> 
-		    <span class="ranges"> <small id="range_help" class="form-text text-muted mb-3">Enter range</small> <div class="all-rows pull-right"> <input type="checkbox" class="form-check-input" id="all-rows"> <small class="form-check-label" for="all-rows">All rows</small> </div> </span>
+		    <span class="ranges"> <small id="range_help" class="form-text text-muted mb-3">Desired range of rows to generate</small> <div class="all-rows pull-right"> <input type="checkbox" class="form-check-input" id="all-rows"> <small class="form-check-label" for="all-rows">All rows</small> </div> </span>
 		    
 		  </div>
 		<br>
 		<div class="center">
-		<button type="button" class="btn btn-primary" style="margin-top: 2%;" id="create_document">Create Documents</button>
+		<button type="button" class="btn btn-primary" style="margin-top: -2%;" id="create_document">Create Documents</button>
 		</div>
 		<div class="footer center">© 2019 - Courtney Medina <br> License: Creative Commons, Free to use! <br> UI/UX By: <a href="https://chukwumaokere.com/" target="_blank"> Chuck Okere </a ><br> <a href="https://www.linkedin.com/in/courtney-april-medina">Send me thanks on LinkedIn :)</a> </div>
 	</div>
